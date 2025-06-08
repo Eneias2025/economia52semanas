@@ -1,0 +1,1 @@
+<img src="{{ asset('images/Logo30.png') }}" alt="Logo WCSA" class="h-16">
