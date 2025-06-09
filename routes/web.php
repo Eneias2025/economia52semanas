@@ -25,8 +25,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/plano/{plano}', [PlanoController::class, 'destroy'])->name('plano.destroy');
 
 
-
-
 });
 
 require __DIR__.'/auth.php';

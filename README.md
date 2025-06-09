@@ -1,6 +1,7 @@
 # 💰 Sistema de Economia em 52 Semanas
 
 Este projeto é um sistema web desenvolvido com Laravel que ajuda os usuários a economizarem dinheiro por meio de depósitos semanais durante 52 semanas. O sistema permite criar até **3 planos personalizados**, acompanhar o progresso, registrar depósitos semanais e desfazê-los em caso de erro, além de excluir planos quando necessário.
+Projeto rodando em https://economia.wcsasistemas.cyou/
 
 ---
 
