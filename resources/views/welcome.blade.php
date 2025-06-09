@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Desafio das 52 Semanas: Aprenda a Economizar Dinheiro Semana a Semana</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -150,8 +150,23 @@
 <path d="M0 0 C1.5 1.1875 1.5 1.1875 3 3 C3.1875 5.6875 3.1875 5.6875 3 8 C2.01 8 1.02 8 0 8 C0 5.36 0 2.72 0 0 Z " fill="#2C3A3B" transform="translate(381,164)"/>
 <path d="M0 0 C0.66 0 1.32 0 2 0 C2 3.63 2 7.26 2 11 C1.67 11 1.34 11 1 11 C0.855625 9.906875 0.71125 8.81375 0.5625 7.6875 C0.11711896 4.06877013 0.11711896 4.06877013 -1 1 C-0.67 0.67 -0.34 0.34 0 0 Z " fill="#F0EDDD" transform="translate(297,163)"/>
 </svg>
+
             </main>
+
         </div>
+                    
+@guest
+<div class="text-center mt-16 px-6">
+    <h1 class="text-3xl md:text-5xl font-bold text-green-600 mb-4">Desafio das 52 Semanas</h1>
+    <p class="text-lg md:text-xl text-gray-700 mb-6">
+        Economize dinheiro de forma simples, prática e sem complicações.<br>
+        Descubra quanto guardar a cada semana e acompanhe seu progresso com clareza.
+    </p>
+    <a href="{{ route('register') }}" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow">
+        Comece Agora Gratuitamente
+    </a>
+</div>
+@endguest
 
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
