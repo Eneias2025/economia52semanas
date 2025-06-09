@@ -43,7 +43,7 @@ Este projeto é um sistema web desenvolvido com Laravel que ajuda os usuários a
 - Blade (Template Engine)
 - Tailwind CSS (estilização e responsividade)
 - Eloquent ORM (para manipulação dos dados)
-- MySQL / SQLite (banco de dados)
+- PostgreSQL, MySQL / SQLite (banco de dados)
 
 ---
 
