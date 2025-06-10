@@ -2,7 +2,11 @@
     <div class="flex justify-center">
         <div class="w-full max-w-7xl px-6 py-8">
             <div class="mb-6 p-4 bg-white shadow rounded-lg text-center">
-                <h1 class="text-3xl font-bold mb-6 text-center">Seus Planos de Economia - 52 Semanas</h1>
+                <h1 class="text-center text-6xl font-bold text-gray-900 mb-6">
+                    Seus Planos de Economia <br class="hidden sm:block" />
+                    <span class="text-green-600 font-extrabold">52 Semanas</span>
+                </h1>
+
 
                 @if (session('success'))
                     <div class="bg-green-100 text-green-800 p-3 rounded mb-4 text-center">
@@ -52,74 +56,77 @@
                         </form>
                     </div>
                     {{-- Timeline --}}
-                    <div class="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
-                        <div class="absolute top-0 left-0 h-4 bg-green-500 transition-all duration-700"
+                    <div class="relative w-full h-6 bg-gray-200 rounded-full overflow-hidden mb-6">
+                        <div class="absolute top-0 left-0 h-6 bg-green-500 transition-all duration-700"
                             style="width: {{ $progresso }}%"></div>
-                        <div class="absolute -top-6 left-0 text-xs text-green-600 font-semibold"
-                            style="left: calc({{ $progresso }}% - 10px);">
+                        <div class="absolute -top-6 left-0 text-sm text-green-600 font-semibold"
+                            style="left: calc({{ $progresso }}% - 16px);">
                             {{ $progresso }}%
                         </div>
                     </div>
                     {{-- Tabela --}}
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <table class="table-auto w-full text-sm text-center">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="px-6 py-3">Semana</th>
-                                    <th class="px-6 py-3">Valor</th>
-                                    <th class="px-6 py-3">Data Prevista</th>
-                                    <th class="px-6 py-3">Status</th>
-                                    <th class="px-6 py-3">Ação</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @foreach ($plano->depositos->sortBy('semana') as $deposito)
-                                    <tr class="{{ $deposito->feito ? 'bg-green-50' : '' }}">
-                                        <td class="px-6 py-2">Semana {{ $deposito->semana }}</td>
-                                        <td class="px-6 py-2">R$ {{ number_format($deposito->valor, 2, ',', '.') }}
-                                        </td>
-                                        <td class="px-6 py-2">{{ $deposito->data->format('d/m/Y') }}</td>
-                                        <td class="px-6 py-2">
-                                            @if ($deposito->feito)
-                                                <span class="text-green-600 font-semibold">✅ Depositado</span>
-                                            @else
-                                                <span class="text-red-600">❌ Em aberto</span>
-                                            @endif
-                                        </td>
-                                        <td class="px-6 py-2">
-                                            @if (!$deposito->feito)
-                                                <form action="{{ route('deposito.marcar', $deposito->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button
-                                                        class="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700">
-                                                        Marcar como feito
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <form action="{{ route('deposito.desfazer', $deposito->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button
-                                                        class="bg-red-600 text-white text-xs px-3 py-1 rounded hover:bg-red-700">
-                                                        Desfazer depósito
-                                                    </button>
-                                                </form>
-                                            @endif
-                                        </td>
+                    {{-- Tabela com scroll horizontal --}}
+                    <div class="overflow-x-auto">
+                        <div class="bg-white shadow-md rounded-lg w-full">
+                            <table class="min-w-[800px] w-full text-sm text-center">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="px-2 py-3 text-left">Semana</th>
+                                        <th class="px-2 py-3 text-left">Valor</th>
+                                        <th class="px-2 py-3 text-left">Data Prevista</th>
+                                        <th class="px-2 py-3 text-left">Status</th>
+                                        <th class="px-2 py-3 text-left">Ação</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    @foreach ($plano->depositos->sortBy('semana') as $deposito)
+                                        <tr class="{{ $deposito->feito ? 'bg-green-50' : '' }}">
+                                            <td class="px-2 py-2">Sem. {{ $deposito->semana }}</td>
+                                            <td class="px-2 py-2">R$ {{ number_format($deposito->valor, 2, ',', '.') }}
+                                            </td>
+                                            <td class="px-2 py-2">{{ $deposito->data->format('d/m/Y') }}</td>
+                                            <td class="px-2 py-2">
+                                                @if ($deposito->feito)
+                                                    <span class="text-green-600 font-semibold">✅ Depositado</span>
+                                                @else
+                                                    <span class="text-red-600">❌ Em aberto</span>
+                                                @endif
+                                            </td>
+                                            <td class="px-2 py-2">
+                                                @if (!$deposito->feito)
+                                                    <form action="{{ route('deposito.marcar', $deposito->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button
+                                                            class="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700">
+                                                            Marcar Como Feito
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('deposito.desfazer', $deposito->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button
+                                                            class="bg-red-600 text-white text-xs px-3 py-1 rounded hover:bg-red-700">
+                                                            Desfazer depósito
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="w-full max-w-7xl px-6 py-8">
-                    <div class="mb-6 p-4 bg-black shadow rounded-lg text-center">
 
+                    <div class="w-full max-w-7xl px-6 py-8">
+                        <div class="mb-6 p-4 bg-black shadow rounded-lg text-center">
+
+                        </div>
                     </div>
-                </div>
             @endforeach
             {{-- Botão para criar novo plano (se ainda tiver menos de 3) --}}
             @if ($planos->count() < 3)
