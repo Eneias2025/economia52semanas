@@ -51,22 +51,15 @@
                             </button>
                         </form>
                     </div>
-
                     {{-- Timeline --}}
-                    <div class="mb-10">
-                        <h3 class="text-lg font-semibold mb-2 text-center">Progresso da Meta</h3>
-                        <div class="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
-                            <div class="absolute top-0 left-0 h-4 bg-green-500 transition-all duration-700"
-                                style="width: {{ $progresso }}%"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-gray-600">
-                            <div class="{{ $progresso >= 25 ? 'text-green-600 font-semibold' : '' }}">25%</div>
-                            <div class="{{ $progresso >= 50 ? 'text-green-600 font-semibold' : '' }}">50%</div>
-                            <div class="{{ $progresso >= 75 ? 'text-green-600 font-semibold' : '' }}">75%</div>
-                            <div class="{{ $progresso >= 100 ? 'text-green-600 font-semibold' : '' }}">100%</div>
+                    <div class="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="absolute top-0 left-0 h-4 bg-green-500 transition-all duration-700"
+                            style="width: {{ $progresso }}%"></div>
+                        <div class="absolute -top-6 left-0 text-xs text-green-600 font-semibold"
+                            style="left: calc({{ $progresso }}% - 10px);">
+                            {{ $progresso }}%
                         </div>
                     </div>
-
                     {{-- Tabela --}}
                     <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
                         <table class="table-auto w-full text-sm text-center">
@@ -122,10 +115,11 @@
                         </table>
                     </div>
                 </div>
-                        <div class="w-full max-w-7xl px-6 py-8">
-            <div class="mb-6 p-4 bg-black shadow rounded-lg text-center">
-                
-            </div></div>
+                <div class="w-full max-w-7xl px-6 py-8">
+                    <div class="mb-6 p-4 bg-black shadow rounded-lg text-center">
+
+                    </div>
+                </div>
             @endforeach
             {{-- Botão para criar novo plano (se ainda tiver menos de 3) --}}
             @if ($planos->count() < 3)
