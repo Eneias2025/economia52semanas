@@ -7,6 +7,9 @@ use App\Http\Controllers\DepositoController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ajuda', function () {
+    return view('ajuda');
+})->name('ajuda');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
